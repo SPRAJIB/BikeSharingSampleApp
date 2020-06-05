@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: sprajibbikesharingsampleapp 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sprajibbikesharingsampleapp 
+    spec:
+      containers:
+        - name: sprajibbikesharingsampleapp 
+          image: rajibacr.azurecr.io/sprajibbikesharingsampleapp
+          ports:
+          - containerPort: 80

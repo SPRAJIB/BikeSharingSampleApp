@@ -15,7 +15,7 @@ resources:
 
 variables:
 
-  # Container registry service connection established during pipeline creation
+  # Container registry service connection established during pipeline creation This is change
   dockerRegistryServiceConnection: 'df9d8a54-286b-47af-8f89-e423226944da'
   imageRepository: 'bikes'
   containerRegistry: 'builddemo.azurecr.io'

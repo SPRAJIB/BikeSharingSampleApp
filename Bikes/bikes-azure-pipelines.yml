@@ -16,15 +16,15 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'df9d8a54-286b-47af-8f89-e423226944da'
-  imageRepository: 'bikes'
-  containerRegistry: 'builddemo.azurecr.io'
+  dockerRegistryServiceConnection: 'a3f975ec-791f-44ee-ab81-963aa7620070'
+  imageRepository: 'sprajibbikesharingsampleapp'
+  containerRegistry: 'rajibacr.azurecr.io'
   dockerfilePath: 'Bikes/Dockerfile'
   tag: '$(Build.BuildId)'
   
   # Kubernetes Namespace
   # Kubernetes Namespace change to Master for main demo
-  k8sNamespace: 'atul'
+  k8sNamespace: 'rajib'
   k8sNamespaceforpr: $(system.pullRequest.sourceBranch)
   imagePullSecret: 'builddemodfb0-auth'
   AZDSDefaultSpace: 'master'

@@ -16,8 +16,8 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'a3f975ec-791f-44ee-ab81-963aa7620070'
-  imageRepository: 'sprajibbikesharingsampleapp'
+  dockerRegistryServiceConnection: '9e0ba679-c5f7-45c5-b469-1649c1a73bfd'
+  imageRepository: 'bike'
   containerRegistry: 'rajibacr.azurecr.io'
   dockerfilePath: 'Bikes/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -26,7 +26,7 @@ variables:
   # Kubernetes Namespace change to Master for main demo
   k8sNamespace: 'rajib'
   k8sNamespaceforpr: $(system.pullRequest.sourceBranch)
-  imagePullSecret: 'builddemodfb0-auth'
+  imagePullSecret: 'rajibacr88578e08-auth'
   AZDSDefaultSpace: 'master'
   AZDSControllerName: 'build2019'
   AZDSControllerRG: 'build2019'
@@ -131,7 +131,7 @@ stages:
           - task: Kubernetes@1
             displayName: 'Create namespace'
             inputs:
-              kubernetesServiceEndpoint: BikeSharingSampleApp
+              kubernetesServiceEndpoint: AKS4-default
               command: create
               arguments: 'ns $(system.pullRequest.sourceBranch)'
               checkLatest: true
@@ -139,15 +139,15 @@ stages:
           - task: Kubernetes@1
             displayName: 'Add devspace label'
             inputs:
-              kubernetesServiceEndpoint: BikeSharingSampleApp
+              kubernetesServiceEndpoint: AKS4-default
               command: label
               arguments: '--overwrite ns $(system.pullRequest.sourceBranch) azds.io/space=true'
               checkLatest: true
 
           - task: Kubernetes@1
             displayName: 'Setup root devspace to master'
-            inputs:
-              kubernetesServiceEndpoint: BikeSharingSampleApp
+            inputskubernetesServiceEndpoint
+              kubernetesServiceEndpoint: 'AKS4-default'
               command: label
               arguments: '--overwrite ns $(system.pullRequest.sourceBranch) azds.io/parent-space=master'
               checkLatest: true
@@ -155,7 +155,7 @@ stages:
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
-              kubernetesServiceConnection: 'BikeSharingSampleApp'
+              kubernetesServiceEndpoint: 'AKS4-default'
               action: createSecret
               secretName: $(imagePullSecret)
               namespace: $(k8sNamespaceforpr)
@@ -176,7 +176,7 @@ stages:
             displayName: deploy
             name: deploy
             inputs:
-              kubernetesServiceConnection: 'BikeSharingSampleApp'
+              kubernetesServiceEndpoint: 'AKS4-default'
               action: deploy
               namespace: $(k8sNamespaceforpr)
               manifests: $(bake.manifestsBundle)

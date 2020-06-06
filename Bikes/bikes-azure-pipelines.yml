@@ -38,8 +38,7 @@ stages:
   - job: Build
     displayName: Build job
     pool:
-      vmImage: $(vmImageName)
-    environment: 'SPRAJIBBikeSharingSampleApp-1527.default'
+      vmImage: $(vmImageName)   
     steps:
 
     - task: Docker@2
@@ -144,7 +143,7 @@ stages:
 
           - task: Kubernetes@1
             displayName: 'Setup root devspace to master'
-            inputskubernetesServiceEndpoint
+            inputs:
               kubernetesServiceEndpoint: 'AKS4-default'
               command: label
               arguments: '--overwrite ns $(system.pullRequest.sourceBranch) azds.io/parent-space=master'

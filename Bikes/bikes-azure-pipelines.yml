@@ -24,7 +24,7 @@ variables:
   
   # Kubernetes Namespace
   # Kubernetes Namespace change to Master for main demo
-  k8sNamespace: 'rajib'
+  k8sNamespace: 'default'
   k8sNamespaceforpr: $(system.pullRequest.sourceBranch)
   imagePullSecret: 'rajibacr88578e08-auth'
   AZDSDefaultSpace: 'master'

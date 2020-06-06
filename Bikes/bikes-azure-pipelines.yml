@@ -182,7 +182,7 @@ stages:
           - task: AzureCLI@1
             displayName: 'List all review app URLs'
             inputs:
-              azureSubscription: 'Azure-Sub-Bike'
+              azureSubscription: 'Visual Studio Enterprise – MPN (99703aac-7796-4a6a-87b3-f813cc4da368)'
               scriptLocation: inlineScript
               inlineScript: |
                 azds controller select -n $(AZDSControllerName) -g $(AZDSControllerRG)

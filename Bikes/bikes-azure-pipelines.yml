@@ -38,7 +38,7 @@ stages:
   - job: Build
     displayName: Build job
     pool:
-      name: work-machine
+       vmImage: $(vmImageName)
 
     steps:
 
@@ -65,7 +65,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy job
     pool:
-      name: work-machine
+      vmImage: $(vmImageName)
 
     environment: 'BikeSharingSampleApp-Dev'
     strategy:
@@ -115,7 +115,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy job
     pool:
-      name: work-machine
+       vmImage: $(vmImageName)
 
     environment: 'BikeSharing-PR'
     strategy:

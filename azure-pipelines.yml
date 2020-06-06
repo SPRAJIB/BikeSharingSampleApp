@@ -76,4 +76,10 @@ stages:
                 $(imagePullSecret)
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
+          - task: PublishPipelineArtifact@1
+            inputs:
+              targetPath: 'Bikes/charts/bikes'
+              artifact: 'charts'
+              publishLocation: 'pipeline'
+            
 

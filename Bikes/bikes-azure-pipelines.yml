@@ -78,7 +78,7 @@ stages:
           - task: KubernetesManifest@0
             displayName: Create imagePullSecret
             inputs:
-              kubernetesServiceConnection: 'BikeSharingSampleApp'
+              kubernetesServiceConnection: 'AKS4-default'
               action: createSecret
               secretName: $(imagePullSecret)
               namespace: $(k8sNamespace)
@@ -99,7 +99,7 @@ stages:
             displayName: deploy
             name: deploy
             inputs:
-              kubernetesServiceConnection: 'BikeSharingSampleApp'
+              kubernetesServiceConnection: 'AKS4-default'
               action: deploy
               namespace: $(k8sNamespace)
               manifests: $(bake.manifestsBundle)

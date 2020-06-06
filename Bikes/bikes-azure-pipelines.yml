@@ -196,16 +196,9 @@ stages:
               Write-Host "$uriret"
             displayName: 'Get PR review app url for the current PR'
           
-          - task: jikuma.devops-github-extension.custom-build-release-task.azuredevopsgithub@0
-            displayName: 'Write the PR review app details to GitHub'
-            name: UpdatePR
+          - task: GitHubComment@0
             inputs:
-              gitHubConnection: 'GitHub'
-              body: |
-                {
-                  "state": "success",
-                  "target_url": "$(RETURI)",
-                  "description": "available",
-                  "context": "Dev Spaces review app"
-                }
-              githubrestapiurl: 'https://api.github.com/repos/$(BUILD.REPOSITORY.ID)/statuses/$(system.pullRequest.sourceCommitId)'
+              gitHubConnection: 'SPRAJIB'
+              repositoryName: '$(Build.Repository.Name)'
+              id: '$(System.PullRequest.PullRequestId)'
+              comment: "dev space branch $(RETURI)"

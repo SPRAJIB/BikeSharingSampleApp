@@ -38,8 +38,8 @@ stages:
   - job: Build
     displayName: Build job
     pool:
-       vmImage: $(vmImageName)
-
+      vmImage: $(vmImageName)
+    environment: 'SPRAJIBBikeSharingSampleApp-1527.default'
     steps:
 
     - task: Docker@2
@@ -66,8 +66,7 @@ stages:
     displayName: Deploy job
     pool:
       vmImage: $(vmImageName)
-
-    environment: 'BikeSharingSampleApp-Dev'
+    environment: 'SPRAJIBBikeSharingSampleApp-1527.default'
     strategy:
       runOnce:
         deploy:
@@ -115,9 +114,8 @@ stages:
   - deployment: Deploy
     displayName: Deploy job
     pool:
-       vmImage: $(vmImageName)
-
-    environment: 'BikeSharing-PR'
+      vmImage: $(vmImageName)
+    environment: 'SPRAJIBBikeSharingSampleApp-1527.default'
     strategy:
       runOnce:
         deploy:
